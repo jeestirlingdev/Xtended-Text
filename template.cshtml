@@ -1,0 +1,95 @@
+@using System;
+@using System.Text;
+@using DotNetNuke.Framework.JavaScriptLibraries;
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+@{
+  //JavaScript.RequestRegistration("GLightbox", new Version(03, 00, 09));
+  //RegisterStyleSheet("/Resources/libraries/GLightbox/03_00_09/glightbox.min.css");
+
+    // register only puts at top
+    // RegisterScript("template.js");
+
+    // get fig template
+    //0 fig
+    //1 title
+    //2 image
+    //3 caption
+    var fgtpl = @"
+<div>
+<figure class='mx-auto ocxt-fig figure'>
+    <h4 class='mx-auto' ><b>Figure {0}:</b> {1}</h4>
+    <p><a href='{2}' class='ocxt-glightbox'>
+        <img class='mx-auto img-fluid figure-img' src='{2}' alt='' />
+        </a>
+    </p>
+    <figcaption class='figure-caption text-right ocxt-caption'>{3}</figcaption> 
+    <div class='sr-only sr-only-focusable'>{4}</div>   
+</figure>
+</div>   ";
+
+    // get Callout template
+    //0 color -- needs to match style
+    //1 body
+    var cotpl = @"
+<div class='mx-auto alert alert-secondary ocxt-callout ocxt-callout-{0}'
+ style='max-width: 40rem;font-weight: 600 !important;' >
+    {1}
+</div>   ";
+
+    //foreach(var fg in Model.figs){}
+    StringBuilder article = new StringBuilder(Model.body);
+    string dwn = Model.dwn;
+
+    // process Figs
+    foreach(var fg in Model.figs){
+        var fgxp = String.Format("<p>[[fig{0}]]</p>",fg.fig);        
+        var fgx = String.Format("[[fig{0}]]",fg.fig);
+        var rpl = String.Format(fgtpl,fg.fig,fg.title,fg.image,fg.caption,fg.scr);
+        article.Replace(fgxp,rpl);
+        article.Replace(fgx,rpl);
+    }
+
+    // process Callouts
+    foreach(var co in Model.cos){
+        var coxp= String.Format("<p>[[co{0}]]</p>",co.coref);
+        var cox = String.Format("[[co{0}]]",co.coref);
+        var rpl = String.Format(cotpl,co.color,co.cobody);
+        article.Replace(coxp,rpl);
+        article.Replace(cox,rpl);
+    }
+// end code
+}
+
+<style>
+.ocxt-article{max-width:1024px;}
+.ocxt-fig{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1ch;
+}
+.ocxt-fig .ocxt-caption{font-size:80%};
+.ocxt-callout{max-width: 40rem;}
+.ocxt-callout p{max-width: 40rem;font-weight: 600;}
+.ocxt-callout-red{color: #ff6000;}
+.ocxt-callout-blue{color: #287682;}
+</style>
+
+
+
+<div class="ocxt-article mx-auto">
+<h1 class="ocxt-title">@Model.title</h1>
+@if (!string.IsNullOrEmpty(dwn)){
+    <p class="ocxt-dwn text-right">
+        <a href="@dwn" target="_blank" class="btn btn-secondary btn-sm">Download a copy <i class="fa fa-download" aria-hidden="true"></i></a>
+    </p>
+}
+@article
+</div>
+
+@* @ObjectInfo.Print(Model) *@
+
+<script>
+  $('div.ocxt-article a').attr("rel","noopener noreferrer").click(function(){this.target = "_blank";    });
+</script>

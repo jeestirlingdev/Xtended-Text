@@ -1,0 +1,100 @@
+{
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "title": "Title",
+      "required": true
+    },
+    "body": {
+      "type": "string",
+      "required": true
+    },
+    "dwn": {
+      "type": "string",
+      "title": "Download Link"
+    },
+    "figs": {
+      "type": "array",
+      "title": "Figures",
+      "items": {
+        "type": "object",
+        "properties": {
+          "fig": {
+            "type": "string",
+            "title": "Figure Ref",
+            "required": true
+          },
+          "title": {
+            "type": "string",
+            "title": "Title",
+            "required": true
+          },
+          "image": {
+            "type": "string",
+            "title": "Image",
+            "required": true
+          },
+          "caption": {
+            "type": "string",
+            "title": "Caption"
+          },
+          "scr": {
+            "type": "string",
+            "title": "Screen Reader"
+          }
+        }
+      }
+    },
+    "cos": {
+      "type": "array",
+      "title": "Callouts",
+      "items": {
+        "type": "object",
+        "properties": {
+          "coref": {
+            "type": "string",
+            "title": "Callout Reference",
+            "required": true
+          },
+          "color": {
+            "type": "string",
+            "title": "Colour Scheme",
+            "enum": [
+              "red",
+              "blue"
+            ],
+            "default": "red",
+            "required": true
+          },
+          "icon": {
+            "type": "string",
+            "title": "Icon"
+          },
+          "cobody": {
+            "type": "string",
+            "title": "Callout Body Text"
+          }
+        }
+      }
+    },
+    "fns": {
+      "type": "array",
+      "title": "Footnotes",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ref": {
+            "type": "string",
+            "title": "Ref ID",
+            "required": true
+          },
+          "fn": {
+            "type": "string",
+            "title": "Note"
+          }
+        }
+      }
+    }
+  }
+}

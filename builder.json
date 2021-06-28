@@ -1,0 +1,186 @@
+{
+  "formfields": [
+    {
+      "fieldname": "title",
+      "title": "Title",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "body",
+      "fieldtype": "ckeditor",
+      "ckeditoroptions": {
+        "configset": "basic"
+      },
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "dwn",
+      "title": "Download Link",
+      "fieldtype": "file",
+      "fileoptions": {},
+      "advanced": false
+    },
+    {
+      "fieldname": "figs",
+      "title": "Figures",
+      "fieldtype": "accordion",
+      "subfields": [
+        {
+          "fieldname": "fig",
+          "title": "Figure Ref",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "title",
+          "title": "Title",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "image",
+          "title": "Image",
+          "fieldtype": "image",
+          "imageoptions": {},
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "caption",
+          "title": "Caption",
+          "fieldtype": "ckeditor",
+          "ckeditoroptions": {
+            "configset": "basic"
+          },
+          "advanced": false
+        },
+        {
+          "fieldname": "scr",
+          "title": "Screen Reader",
+          "fieldtype": "ckeditor",
+          "ckeditoroptions": {
+            "configset": "basic"
+          },
+          "advanced": false
+        }
+      ],
+      "advanced": false
+    },
+    {
+      "fieldname": "cos",
+      "title": "Callouts",
+      "fieldtype": "accordion",
+      "subfields": [
+        {
+          "fieldname": "coref",
+          "title": "Callout Reference",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "color",
+          "title": "Colour Scheme",
+          "fieldtype": "radio",
+          "vertical": false,
+          "fieldoptions": [
+            {
+              "value": "red",
+              "text": "Red"
+            },
+            {
+              "value": "blue",
+              "text": "Blue"
+            }
+          ],
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "icon",
+          "title": "Icon",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "cobody",
+          "title": "Callout Body Text",
+          "fieldtype": "ckeditor",
+          "ckeditoroptions": {
+            "configset": "basic"
+          },
+          "advanced": false
+        }
+      ],
+      "advanced": false
+    },
+    {
+      "fieldname": "fns",
+      "title": "Footnotes",
+      "fieldtype": "accordion",
+      "subfields": [
+        {
+          "fieldname": "ref",
+          "title": "Ref ID",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "fn",
+          "title": "Note",
+          "fieldtype": "ckeditor",
+          "ckeditoroptions": {
+            "configset": "basic"
+          },
+          "advanced": false
+        }
+      ],
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}
