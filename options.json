@@ -1,0 +1,78 @@
+{
+  "fields": {
+    "title": {
+      "type": "text"
+    },
+    "body": {
+      "type": "ckeditor",
+      "configset": "basic"
+    },
+    "dwn": {
+      "type": "file"
+    },
+    "figs": {
+      "type": "accordion",
+      "items": {
+        "fields": {
+          "fig": {
+            "type": "text"
+          },
+          "title": {
+            "type": "text"
+          },
+          "image": {
+            "type": "image"
+          },
+          "caption": {
+            "type": "ckeditor",
+            "configset": "basic"
+          },
+          "scr": {
+            "type": "ckeditor",
+            "configset": "basic"
+          }
+        }
+      }
+    },
+    "cos": {
+      "type": "accordion",
+      "items": {
+        "fields": {
+          "coref": {
+            "type": "text"
+          },
+          "color": {
+            "type": "radio",
+            "sort": false,
+            "optionLabels": [
+              "Red",
+              "Blue"
+            ],
+            "vertical": false
+          },
+          "icon": {
+            "type": "text"
+          },
+          "cobody": {
+            "type": "ckeditor",
+            "configset": "basic"
+          }
+        }
+      }
+    },
+    "fns": {
+      "type": "accordion",
+      "items": {
+        "fields": {
+          "ref": {
+            "type": "text"
+          },
+          "fn": {
+            "type": "ckeditor",
+            "configset": "basic"
+          }
+        }
+      }
+    }
+  }
+}
