@@ -3,6 +3,12 @@
 @using DotNetNuke.Framework.JavaScriptLibraries;
 @inherits Satrabel.OpenContent.Components.OpenContentWebPage
 @{
+
+        RegisterScript("html-contents.js");
+    var mid = "ocxt-Article" + Dnn.Module.ModuleID.ToString();
+    
+    //    RegisterScript("https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js");
+   // RegisterStyleSheet("https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css");
   //JavaScript.RequestRegistration("GLightbox", new Version(03, 00, 09));
   //RegisterStyleSheet("/Resources/libraries/GLightbox/03_00_09/glightbox.min.css");
 
@@ -77,19 +83,44 @@
 </style>
 
 
+<!-- break these into boostrap rows and columns -->
+<div class="ocxt-article mx-auto" >
+    @if ( @Model.showTitle){<h1 class="ocxt-title">@Model.title </h1>}
 
-<div class="ocxt-article mx-auto">
-<h1 class="ocxt-title">@Model.title</h1>
+@if ( @Model.showToc){
+    <h2>Table of Contents</h2>
+    <div class="ocxt-article-toc"></div>
+}
+
 @if (!string.IsNullOrEmpty(dwn)){
     <p class="ocxt-dwn text-right">
         <a href="@dwn" target="_blank" class="btn btn-secondary btn-sm">Download a copy <i class="fa fa-download" aria-hidden="true"></i></a>
     </p>
 }
+<div id="@mid">
 @article
 </div>
+
+</div>
+
+
 
 @* @ObjectInfo.Print(Model) *@
 
 <script>
   $('div.ocxt-article a').attr("rel","noopener noreferrer").click(function(){this.target = "_blank";    });
+
+
+
+    document.addEventListener("DOMContentLoaded", function(event) {
+    htmlContents('.ocxt-article-toc', {
+        top: 2,         // 1-6: biggest header to include in outline
+        bottom: 3,      // 1-6: smallest header to include in outline
+        addIds: true,   // true/false: add ids to H* that don't have them
+        addLinks: true, //true/false: add links to outline? 
+        listType: 'u',  // 'u' or 'o': (u)nordered or (o)rdered list type
+        articleId: '@mid'
+    })
+    })
+
 </script>

@@ -6,6 +6,14 @@
       "title": "Title",
       "required": true
     },
+    "showTitle": {
+      "type": "boolean",
+      "title": "Show Title?"
+    },
+    "showTOC": {
+      "type": "boolean",
+      "title": "Show Table of Contents"
+    },
     "body": {
       "type": "string",
       "required": true

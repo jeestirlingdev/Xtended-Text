@@ -13,6 +13,18 @@
       "dependencies": []
     },
     {
+      "fieldname": "showTitle",
+      "title": "Show Title?",
+      "fieldtype": "checkbox",
+      "advanced": false
+    },
+    {
+      "fieldname": "showTOC",
+      "title": "Show Table of Contents",
+      "fieldtype": "checkbox",
+      "advanced": false
+    },
+    {
       "fieldname": "body",
       "fieldtype": "ckeditor",
       "ckeditoroptions": {

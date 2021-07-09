@@ -3,6 +3,12 @@
     "title": {
       "type": "text"
     },
+    "showTitle": {
+      "type": "checkbox"
+    },
+    "showTOC": {
+      "type": "checkbox"
+    },
     "body": {
       "type": "ckeditor",
       "configset": "basic"
