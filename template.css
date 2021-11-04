@@ -1,0 +1,53 @@
+.ocxt-article{
+    max-width:1024px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+.ocxt-toc-sticky{
+    position: sticky;
+    top:0;
+    justify-content: space-around;
+    padding-left: 1em;
+}
+
+.ocxt-toc-sticky .card{display:none;}
+
+.ocxt-toc-sticky .card-body{
+    padding:0.25rem;
+}
+
+.ocxt-article-toc li{
+   margin-bottom: 0.25rem;
+}
+
+.ocxt-article-toc a{
+    text-decoration: none;
+}
+
+.ocxt-fig{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1ch;
+}
+.ocxt-fig .ocxt-caption{font-size:80%};
+.ocxt-callout{max-width: 40rem;}
+.ocxt-callout p{max-width: 40rem;font-weight: 600;}
+.ocxt-callout-red{color: #ff6000;}
+.ocxt-callout-blue{color: #287682;}
+
+
+
+
+
+@media (min-width: 769px){
+    .ocxt-toc-show,
+    .ocxt-toc-hide
+    {display:none;}
+
+    .ocxt-toc-sticky{ min-width: 13rem; }
+
+    .ocxt-toc-sticky .card{display:block;}
+}

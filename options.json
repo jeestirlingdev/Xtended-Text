@@ -9,6 +9,20 @@
     "showTOC": {
       "type": "checkbox"
     },
+    "btmLevel": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "H2",
+        "H3",
+        "H4"
+      ],
+      "dependencies": {
+        "showTOC": [
+          "true"
+        ]
+      }
+    },
     "body": {
       "type": "ckeditor",
       "configset": "basic"

@@ -20,6 +20,7 @@
     //1 title
     //2 image
     //3 caption
+    //4 screen reader
     var fgtpl = @"
 <div>
 <figure class='mx-auto ocxt-fig figure'>
@@ -28,10 +29,10 @@
         <img class='mx-auto img-fluid figure-img' src='{2}' alt='' />
         </a>
     </p>
-    <figcaption class='figure-caption text-right ocxt-caption'>{3}</figcaption> 
+    <figcaption class='figure-caption text-left ocxt-caption'>{3}</figcaption> 
     <div class='sr-only sr-only-focusable'>{4}</div>   
 </figure>
-</div>   ";
+</div>   "; // end fgtpl
 
     // get Callout template
     //0 color -- needs to match style
@@ -40,10 +41,12 @@
 <div class='mx-auto alert alert-secondary ocxt-callout ocxt-callout-{0}'
  style='max-width: 40rem;font-weight: 600 !important;' >
     {1}
-</div>   ";
+</div>   "; // end cotpl
 
-    //foreach(var fg in Model.figs){}
+    //get article
     StringBuilder article = new StringBuilder(Model.body);
+
+    // get download path
     string dwn = Model.dwn;
 
     // process Figs
@@ -67,39 +70,41 @@
 }
 
 <style>
-.ocxt-article{max-width:1024px;}
-.ocxt-fig{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1ch;
-}
-.ocxt-fig .ocxt-caption{font-size:80%};
-.ocxt-callout{max-width: 40rem;}
-.ocxt-callout p{max-width: 40rem;font-weight: 600;}
-.ocxt-callout-red{color: #ff6000;}
-.ocxt-callout-blue{color: #287682;}
+
 </style>
 
+ @if ( @Model.showTitle){<h1 class="ocxt-title">@Model.title </h1>}
 
-<!-- break these into boostrap rows and columns -->
 <div class="ocxt-article mx-auto" >
-    @if ( @Model.showTitle){<h1 class="ocxt-title">@Model.title </h1>}
+    <div id="@mid">
+    @article
+    </div>
 
-@if ( @Model.showToc){
-    <h2>Table of Contents</h2>
-    <div class="ocxt-article-toc"></div>
-}
+    @if ( @Model.showToc){
+        <div class="ocxt-toc-sticky">
+            <span class="ocxt-toc-show">
+                <a class="btn btn-dark btn-sm ocxt-toc-show" href="#" role="button" title="Table of Contents">TOC</a>
+            </span>
+            <div class="card bg-light">
+                <div class="card-header">
+                    <span >Table of Contents</span>
+                    
+                </div>
+                <div  class="card-body">
+                    <div class="ocxt-article-toc "></div>
+                    @if (!string.IsNullOrEmpty(dwn)){
+                        <p class="ocxt-dwn text-right">
+                            <a href="@dwn" target="_blank" class="btn btn-secondary btn-sm">Download a copy <i class="fa fa-download" aria-hidden="true"></i></a>
+                        </p>
+                    }
+                    <p class="ocxt-toc-hide">
+                    <a class="btn btn-dark btn-sm float-right ocxt-toc-hide" href="#" role="button" title="Hide table of content">Hide <i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                    </p>
+                </div>
 
-@if (!string.IsNullOrEmpty(dwn)){
-    <p class="ocxt-dwn text-right">
-        <a href="@dwn" target="_blank" class="btn btn-secondary btn-sm">Download a copy <i class="fa fa-download" aria-hidden="true"></i></a>
-    </p>
-}
-<div id="@mid">
-@article
-</div>
+            </div>
+        </div>
+    }
 
 </div>
 
@@ -113,14 +118,30 @@
 
 
     document.addEventListener("DOMContentLoaded", function(event) {
-    htmlContents('.ocxt-article-toc', {
-        top: 2,         // 1-6: biggest header to include in outline
-        bottom: 3,      // 1-6: smallest header to include in outline
-        addIds: true,   // true/false: add ids to H* that don't have them
-        addLinks: true, //true/false: add links to outline? 
-        listType: 'u',  // 'u' or 'o': (u)nordered or (o)rdered list type
-        articleId: '@mid'
-    })
-    })
+        htmlContents('.ocxt-article-toc', {
+            top: 2,         // 1-6: biggest header to include in outline
+            bottom: @Model.btmLevel,      // 1-6: smallest header to include in outline
+            addIds: true,   // true/false: add ids to H* that don't have them
+            addLinks: true, //true/false: add links to outline? 
+            listType: 'u',  // 'u' or 'o': (u)nordered or (o)rdered list type
+            articleId: '@mid'
+        })
+    });
+
+
+    $('.ocxt-toc-show').click(function (event) {
+        event.preventDefault();
+        $('.ocxt-toc-sticky .card').show();
+        $('.ocxt-toc-show').hide();
+        return false;
+    });
+
+    $('.ocxt-toc-hide').click(function (event) {
+        console.log("hit hide");
+        event.preventDefault();
+        $('.ocxt-toc-sticky .card').hide();
+        $('.ocxt-toc-show').show();
+        return false;
+    });
 
 </script>

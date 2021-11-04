@@ -14,8 +14,23 @@
       "type": "boolean",
       "title": "Show Table of Contents"
     },
+    "btmLevel": {
+      "type": "string",
+      "title": "Include in table of contents",
+      "enum": [
+        "2",
+        "3",
+        "4"
+      ],
+      "default": "2",
+      "required": true,
+      "dependencies": [
+        "showTOC"
+      ]
+    },
     "body": {
       "type": "string",
+      "title": "<a href=\"https://bbc.co.uk\" target=\"_blank\">Body</a>",
       "required": true
     },
     "dwn": {

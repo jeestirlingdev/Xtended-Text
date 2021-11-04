@@ -25,7 +25,39 @@
       "advanced": false
     },
     {
+      "fieldname": "btmLevel",
+      "title": "Include in table of contents",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "2",
+          "text": "H2"
+        },
+        {
+          "value": "3",
+          "text": "H3"
+        },
+        {
+          "value": "4",
+          "text": "H4"
+        }
+      ],
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "default": "2",
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "showTOC",
+          "values": "true"
+        }
+      ]
+    },
+    {
       "fieldname": "body",
+      "title": "<a href=\"https://bbc.co.uk\" target=\"_blank\">Body</a>",
       "fieldtype": "ckeditor",
       "ckeditoroptions": {
         "configset": "basic"
